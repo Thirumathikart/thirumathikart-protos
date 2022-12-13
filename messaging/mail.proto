@@ -22,5 +22,5 @@ message SingleMailResponse {
 } 
 
 service MailService {
-    rpc SendSingleMailRPC(SingleMailRequest) returns (SingleMailResponse){};
+    rpc SingleMailRPC(SingleMailRequest) returns (SingleMailResponse){};
 }

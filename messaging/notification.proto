@@ -28,6 +28,6 @@ message MultipleNotificationResponse {
 
 
 service NotificationService {
-    rpc SendSingleNotificationRPC(SingleNotificationRequest) returns (SingleNotificationResponse){};
-    rpc SendMultipleNotificationRPC(MultipleNotificationRequest) returns (MultipleNotificationResponse){};
+    rpc SingleNotificationRPC(SingleNotificationRequest) returns (SingleNotificationResponse){};
+    rpc MultipleNotificationRPC(MultipleNotificationRequest) returns (MultipleNotificationResponse){};
 }

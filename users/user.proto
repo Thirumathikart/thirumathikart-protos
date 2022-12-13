@@ -4,26 +4,34 @@ package rpcs;
 
 option go_package = "./user";
 
-message GetUserRequest {
+message AuthRequest {
     string user_token = 1;
-    optional string address = 2;
+}
+
+message AuthResponse {
+    bool is_success = 1;
+}
+
+message UserRequest {
+    string contact = 1;
+    string address = 2;
 } 
 
 message User {
     uint32 user_id = 1;
     string email = 2;
     string contact = 3;	
-    optional uint32 first_name = 4;
+    optional string first_name = 4;
     optional string last_name = 5;
     optional string fcm_token = 6;
     optional uint32 address_id = 7;
 }
 
-message GetUserResponse {
-    bool is_success = 1;
-    optional User user = 2;
+message UserResponse {
+    User user = 1;
 } 
 
 service UserService {
-    rpc GetUserRPC(GetUserRequest) returns (GetUserResponse){};
+    rpc AuthRPC(AuthRequest) returns (AuthResponse){};
+    rpc UserRPC(UserRequest) returns (UserResponse){};
 }
