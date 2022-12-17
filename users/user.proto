@@ -4,28 +4,50 @@ package rpcs;
 
 option go_package = "./user";
 
+enum Role{
+    Customer = 0;
+    Delivery = 1;
+    Seller = 2;
+ }
+
 message AuthRequest {
     string user_token = 1;
+    Role role = 2;
 }
 
 message AuthResponse {
-    bool is_success = 1;
-    User user = 2;
+    bool isSuccess = 1;
+    optional User user = 2;
 }
 
 message UserRequest {
-    string contact = 1;
-    string address = 2;
+    uint32 userID = 1;
+    uint32 addressID = 2;
+}
+
+message OrderRequest {
+    repeated UserRequest userRequest = 1;
+}
+
+message OrderResponse {
+    repeated User userResponse = 1;
 } 
+
+message Address {
+    string name = 1;
+    double latitude = 2;
+    double longitude = 3;
+}
 
 message User {
     uint32 user_id = 1;
     string email = 2;
     string contact = 3;	
-    string first_name = 4;
-    string last_name = 5;
-    string fcm_token = 6;
-    uint32 address_id = 7;
+    optional string first_name = 4;
+    optional string last_name = 5;
+    optional string fcm_token = 6;
+    optional Address address = 7;
+    optional Role role = 8;
 }
 
 message UserResponse {
@@ -35,4 +57,5 @@ message UserResponse {
 service UserService {
     rpc AuthRPC(AuthRequest) returns (AuthResponse){};
     rpc UserRPC(UserRequest) returns (UserResponse){};
+    rpc OrderRPC(OrderRequest) returns (OrderResponse){};
 }
