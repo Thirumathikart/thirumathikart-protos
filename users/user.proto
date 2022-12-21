@@ -38,6 +38,12 @@ message Address {
     string name = 2;
     double latitude = 3;
     double longitude = 4;
+    optional string line_1 = 5;
+    optional string line_2 = 6;
+    optional string landmark = 7;
+    optional string district = 8;
+    optional string state = 9;
+    optional string pincode = 10;
 }
 
 message User {
